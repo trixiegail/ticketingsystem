@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {useState} from 'react';
 import DashboardLayout from "./DashboardLayout";
 import {Button, ButtonContent, Dropdown, Icon, Input, Menu, MenuItem, Segment, SegmentGroup} from "semantic-ui-react";
 import Card from 'semantic-ui-react/dist/es/views/Card';
@@ -24,8 +24,6 @@ const ScheduledTicket = () => {
         return (
             <DashboardLayout>
                 <div className="page-container">
-
-                    {/* Content Wrapper */}
                     <div className="content-wrapper">
                         <Segment basic>
                             <Input icon="search" placeholder="Search..." style={{width: "850px"}}/>

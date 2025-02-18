@@ -56,3 +56,149 @@ html, body {
     display: flex;
     flex-direction: column;
 }
+
+.assignee-card{
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom dropdown with no clear icon */
+.ui.dropdown .clear.icon {
+    display: none !important;
+}
+
+.custom-modal .ui.dimmer.modals {
+    background-color: rgba(0, 0, 0, 0.2) !important; /* 40% black opacity */
+}
+
+/* Custom striped table with opacity using RGBA */
+.striped-table tbody tr:nth-child(odd) {
+    background-color: #F5F5F5 !important; /* Light Red with 50% opacity */
+}
+
+.striped-table tbody tr:nth-child(even) {
+    background-color: rgba(230, 247, 255, 0.5) !important; /* Light Blue with 50% opacity */
+}
+
+.striped-table thead tr {
+    background-color: #176D7F !important;
+    color: white !important;
+}
+
+.table-container {
+    overflow-y: auto;
+    position: relative;
+    height: 73vh; /* Adjust as needed */
+}
+
+.fixed-header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+}
+
+.table-container-ticket {
+    overflow-y: auto;
+    position: relative;
+    height: 60vh; /* Adjust as needed */
+}
+
+.table-container-assignee {
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    height: 70vh; /* Adjust as needed */
+}
+
+.ticket-menu-container {
+    border-radius: 8px 8px 0 0;
+    background-color: #f9f9f9;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-menu {
+    margin: 0;
+    padding: 0;
+}
+
+.ticket-menu-item {
+    margin-right: 10px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.ticket-menu-item:hover {
+    background-color: #4FB3C8 !important;
+    color: white !important;
+}
+
+/* TicketMenu.css */
+/*.ticket-menu-item {*/
+/*    opacity: 0;*/
+/*    transition: opacity 0.5s ease-in-out;*/
+/*}*/
+
+/*.ticket-menu-item.visible {*/
+/*    opacity: 1;*/
+/*}*/
+
+.ticket-menu-item.active {
+    background-color: #176D7F !important;
+    color: white !important;
+}
+
+.ticket-menu-dropdowns {
+    display: flex;
+    gap: 10px;
+}
+
+.ticket-menu-dropdown {
+    background-color: white;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+/* Custom menu item hover and active effects */
+/*.ticket-menu-container .menu-item {*/
+/*    transition: background-color 0.3s ease, color 0.3s ease;*/
+/*}*/
+
+/*.ticket-menu-container .menu-item:hover {*/
+/*    background-color: #f0f0f0;*/
+/*    color: #000;*/
+/*}*/
+
+/*.ticket-menu-container .menu-item.active {*/
+/*    background-color: #e0e0e0;*/
+/*    color: #0066cc;*/
+/*}*/
+
+/*.ticket-menu-container .menu-item .icon {*/
+/*    margin-right: 8px;*/
+/*}*/
+
+/*.ticket-menu-container .filters-container .ui.dropdown {*/
+/*    min-width: 140px;*/
+/*}*/
+
+/* TicketMenu.css */
+.ticket-menu-item {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.ticket-menu-item.visible {
+    opacity: 1;
+}
+
+
+
+

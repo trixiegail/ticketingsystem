@@ -8,10 +8,9 @@ import {
     Segment,
     Icon,
     Input,
-    Modal, Form, Grid, Dropdown
+    Checkbox, Modal, Form, Grid, Dropdown
 } from "semantic-ui-react";
-import EditCompanyModal from "./EditCompanyModal";
-import AddCompanyModal from "./AddCompanyModal";
+import { useNavigate } from "react-router-dom";
 
 const initialCompanies = [
     {
@@ -74,7 +73,7 @@ const Company = () => {
     const [editingCompany, setEditingCompany] = useState(null);
     const [selectedCompany, setSelectedCompany] = useState(null);
     const [showEditCompanyForm, setShowEditCompanyForm] = useState(false);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [showTicketHistory, setShowTicketHistory] = useState(false);
     const [formData, setFormData] = useState({
         name: "", companyName: "", email: "", contact: "", address: "", accountInfo: ""
@@ -124,10 +123,6 @@ const Company = () => {
         setSearchQuery(e.target.value);
     };
 
-    const handleDelete = (id) => {
-        setCompanies(companies.filter(company => company.id !== id));
-    };
-
     const filteredCompanies = companies.filter(company =>
         company.companyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         company.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -138,7 +133,7 @@ const Company = () => {
             <div className="page-container">
                 <div className="content-wrapper">
                     <Segment basic>
-                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                        <div style={{float: "right"}}>
                             <Input
                                 icon='search'
                                 placeholder='Search...'
@@ -146,26 +141,60 @@ const Company = () => {
                                 value={searchQuery}
                                 onChange={handleSearchChange}
                             />
-                            <Button style={{height: "40px"}} onClick={toggleForm}>Add Company</Button>
+                            <Button onClick={toggleForm}>Add Company</Button>
                         </div>
 
-                        <AddCompanyModal
-                            showForm={showForm}
-                            toggleForm={toggleForm}
-                            formData={formData}
-                            handleChange={handleChange}
-                            handleSave={handleSave}
-                            accountInfoOptions={accountInfoOptions}
-                        />
+                        {/* Add Company Form */}
+                        <Modal open={showForm} onClose={toggleForm} size="small">
+                            <Modal.Header style={{ backgroundColor: "#176D7F", color: "white" }}>
+                                ADD COMPANY
+                            </Modal.Header>
 
-                        <EditCompanyModal
-                            showEditCompanyForm={showEditCompanyForm}
-                            setShowEditCompanyForm={setShowEditCompanyForm}
-                            formData={formData}
-                            handleEditCompany={handleEditCompany}
-                            saveEditCompany={saveEditCompany}
-                            accountInfoOptions={accountInfoOptions}
-                        />
+                            <Modal.Content>
+                                <div style={{ maxHeight: "400px", paddingRight: "10px" }}>
+                                    <Form>
+                                        {/* Contact Person Details */}
+                                        <h4>Company Details</h4>
+
+                                        <Grid columns={3} stackable>
+                                            <Grid.Row>
+                                                <Grid.Column>
+                                                    <Form.Input label="Company Name" placeholder="Company Name" name="companyName" value={formData.companyName} onChange={handleChange}/>
+                                                </Grid.Column>
+                                                <Grid.Column>
+                                                    <Form.Input label="Contact Person" placeholder="Full Name" name="name" value={formData.name} onChange={handleChange}/>
+                                                </Grid.Column>
+                                                <Grid.Column>
+                                                    <Form.Input label="Contact Number" placeholder="Contact Number" name="contact" value={formData.contact} onChange={handleChange}/>
+                                                </Grid.Column>
+                                            </Grid.Row>
+                                        </Grid>
+                                        <Grid columns={3} stackable style={{marginBottom:"5px"}}>
+                                            <Grid.Row>
+                                                <Grid.Column>
+                                                    <Form.Input label="Email Address" placeholder="Email Address" name="email" value={formData.email} onChange={handleChange}/>
+                                                </Grid.Column>
+                                                <Grid.Column>
+                                                    <div><p><strong>Account Information</strong></p></div>
+                                                    <Dropdown placeholder="Specify" openOnFocus selection options={accountInfoOptions} name="accountInfo" value={formData.accountInfo} onChange={(e, { value }) => setFormData({ ...formData, accountInfo: value })}/>
+                                                </Grid.Column>
+                                            </Grid.Row>
+                                        </Grid>
+                                        <Form.Input label="Address" placeholder="Address" name="address" value={formData.address} onChange={handleChange}/>
+                                    </Form>
+                                </div>
+                            </Modal.Content>
+
+                            {/* Modal Actions (Buttons) */}
+                            <Modal.Actions>
+                                <Button basic onClick={toggleForm}>
+                                    CANCEL
+                                </Button>
+                                <Button onClick={handleSave}>
+                                    ADD
+                                </Button>
+                            </Modal.Actions>
+                        </Modal>
 
                         {/* Edit Company Form */}
                         <Modal open={showEditCompanyForm} onClose={() => setShowEditCompanyForm(false)} size="small">
@@ -220,7 +249,7 @@ const Company = () => {
                         </Modal>
 
                         <div className="table-container">
-                            <Table celled selectable>
+                            <Table celled selectable className="striped-table">
                                 <Table.Header className="fixed-header">
                                     <Table.Row>
                                         <Table.HeaderCell>Company</Table.HeaderCell>
@@ -231,11 +260,11 @@ const Company = () => {
                                 </Table.Header>
                                 <Table.Body>
                                     {filteredCompanies.map((company) => (
-                                        <Table.Row key={company.id} style={{ cursor: "pointer"}}>
-                                            <Table.Cell onClick={() => openTicketHistory(company.companyName)}>
+                                        <Table.Row key={company.id} onClick={() => openTicketHistory(company.companyName)} style={{ cursor: "pointer"}}>
+                                            <Table.Cell>
                                                 <div>{company.companyName}</div>
                                             </Table.Cell>
-                                            <Table.Cell onClick={() => openTicketHistory(company.companyName)}>
+                                            <Table.Cell>
                                                 <div>{company.name}</div>
                                                 <div style={{color: "gray", fontSize: "0.9em"}}>
                                                     <Icon name="map marker alternate" style={{marginLeft: "10px"}}/> Cebu
@@ -244,7 +273,7 @@ const Company = () => {
                                                     <Icon name="phone" style={{marginLeft: "10px"}}/> {company.contact}
                                                 </div>
                                             </Table.Cell>
-                                            <Table.Cell onClick={() => openTicketHistory(company.companyName)}></Table.Cell>
+                                            <Table.Cell></Table.Cell>
                                             <TableCell>
                                                 <div style={{
                                                     display: "flex",
@@ -252,7 +281,7 @@ const Company = () => {
                                                     justifyContent: "center"
                                                 }}>
                                                     <Icon name="edit" onClick={() => openEditCompanyForm(company)} style={{ cursor: "pointer" }} />
-                                                    <Icon name="trash" onClick={() => handleDelete(company.id)} style={{ cursor: "pointer" }} />
+                                                    <Icon name="trash"/>
                                                 </div>
                                             </TableCell>
                                         </Table.Row>

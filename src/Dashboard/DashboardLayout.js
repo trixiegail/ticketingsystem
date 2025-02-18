@@ -59,7 +59,7 @@ const DashboardLayout = ({ children }) => {
                 <Menu.Item
                     as={Link}
                     to={"/dashboard"}
-                    name="dashboard"
+                    name='dashboard'
                     active={activeItem === 'dashboard'}
                     onClick={handleItemClick}
                     style={{marginTop: "90%"}}>
@@ -87,7 +87,7 @@ const DashboardLayout = ({ children }) => {
                 <Menu.Item
                     as={Link}
                     to={"/assignees"}
-                    name="assignee"
+                    name='assignee'
                     active={activeItem === 'assignee'}
                     onClick={handleItemClick}>
                     <Icon name="users"/>
