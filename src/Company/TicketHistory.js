@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Table, Segment, Icon, Input, Dropdown } from "semantic-ui-react";
 import DashboardLayout from "../Dashboard/DashboardLayout";
+import {useNavigate} from "react-router-dom";
 
 const ticketStatusOptions = [
     { key: "pending", text: "Pending", value: "pending" },

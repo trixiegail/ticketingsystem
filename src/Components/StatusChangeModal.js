@@ -10,7 +10,7 @@ const StatusChangeModal = ({ modalOpen, setModalOpen, newStatus, confirmStatusCh
             </Modal.Content>
             <Modal.Actions>
                 <Button onClick={() => setModalOpen(false)}>Cancel</Button>
-                <Button inverted onClick={confirmStatusChange} style={{ backgroundColor: "#176D7F" }}>Confirm</Button>
+                <Button primary onClick={confirmStatusChange}>Confirm</Button>
             </Modal.Actions>
         </Modal>
     );

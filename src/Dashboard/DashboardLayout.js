@@ -47,90 +47,57 @@ const DashboardLayout = ({ children }) => {
         <div style={{display: 'flex'}}>
 
             {/* Sidebar */}
-            <Sidebar
-                as={Menu}
-                icon="labeled"
-                inverted
-                vertical
-                visible={true}
-                width="100px"
-                style={{backgroundColor: "gray"}}
-            >
-                <Menu.Item
-                    as={Link}
-                    to={"/dashboard"}
-                    name='dashboard'
-                    active={activeItem === 'dashboard'}
-                    onClick={handleItemClick}
-                    style={{marginTop: "90%"}}>
-                    <Icon name="th large"/>
-                    <span className="menu-text">Dashboard</span>
-                </Menu.Item>
-                <Menu.Item
-                    as={Link}
-                    to={"/company"}
-                    name="users"
-                    active={activeItem === 'users'}
-                    onClick={handleItemClick}>
-                    <Icon name="users"/>
-                    <span className="menu-text">Company</span>
-                </Menu.Item>
-                <Menu.Item
-                    as={Link}
-                    to={"/all-tickets"}
-                    name="calendar"
-                    active={activeItem === 'calendar'}
-                    onClick={handleItemClick}>
-                    <Icon name="calendar"/>
-                    <span className="menu-text">Tickets</span>
-                </Menu.Item>
-                <Menu.Item
-                    as={Link}
-                    to={"/assignees"}
-                    name='assignee'
-                    active={activeItem === 'assignee'}
-                    onClick={handleItemClick}>
-                    <Icon name="users"/>
-                    <span className="menu-text">Assignees</span>
-                </Menu.Item>
-            </Sidebar>
+            {/*<Sidebar*/}
+            {/*    as={Menu}*/}
+            {/*    icon="labeled"*/}
+            {/*    inverted*/}
+            {/*    vertical*/}
+            {/*    visible={true}*/}
+            {/*    width="100px"*/}
+            {/*    style={{backgroundColor: "gray"}}*/}
+            {/*>*/}
+            {/*    <Menu.Item*/}
+            {/*        as={Link}*/}
+            {/*        to={"/dashboard"}*/}
+            {/*        name='dashboard'*/}
+            {/*        active={activeItem === 'dashboard'}*/}
+            {/*        onClick={handleItemClick}*/}
+            {/*        style={{marginTop: "90%"}}>*/}
+            {/*        <Icon name="th large"/>*/}
+            {/*        <span className="menu-text">Dashboard</span>*/}
+            {/*    </Menu.Item>*/}
+            {/*    <Menu.Item*/}
+            {/*        as={Link}*/}
+            {/*        to={"/company"}*/}
+            {/*        name="users"*/}
+            {/*        active={activeItem === 'users'}*/}
+            {/*        onClick={handleItemClick}>*/}
+            {/*        <Icon name="users"/>*/}
+            {/*        <span className="menu-text">Company</span>*/}
+            {/*    </Menu.Item>*/}
+            {/*    <Menu.Item*/}
+            {/*        as={Link}*/}
+            {/*        to={"/all-tickets"}*/}
+            {/*        name="calendar"*/}
+            {/*        active={activeItem === 'calendar'}*/}
+            {/*        onClick={handleItemClick}>*/}
+            {/*        <Icon name="calendar"/>*/}
+            {/*        <span className="menu-text">Tickets</span>*/}
+            {/*    </Menu.Item>*/}
+            {/*    <Menu.Item*/}
+            {/*        as={Link}*/}
+            {/*        to={"/assignees"}*/}
+            {/*        name='assignee'*/}
+            {/*        active={activeItem === 'assignee'}*/}
+            {/*        onClick={handleItemClick}>*/}
+            {/*        <Icon name="users"/>*/}
+            {/*        <span className="menu-text">Assignees</span>*/}
+            {/*    </Menu.Item>*/}
+            {/*</Sidebar>*/}
 
             {/* Fixed Top Menu */}
             <div className="fixed-menu">
-                <Menu secondary>
-                    <Menu.Item>
-                        <Header as="h2">Welcome Admin!</Header>
-                    </Menu.Item>
-                    <Menu.Item position="right">
-                        <Icon name="bell"/>
-                    </Menu.Item>
-                    <Menu.Item onClick={profile}>
-                        <Dropdown
-                            trigger={trigger}
-                            options={options}
-                            pointing='top right'
-                            className="custom-dropdown"
-                            style={{
-                                fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-                            }}
-                            icon={null}
-                        >
-                            <Dropdown.Menu
-                                style={{
-                                    borderRadius: '8px',
-                                    padding: '10px 0',
-                                    minWidth: '200px',
-                                    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.15)',
-                                }}
-                            >
-                                {options.map(option => (
-                                    <Dropdown.Item key={option.key} text={option.text} disabled={option.disabled} />
-                                ))}
-                            </Dropdown.Menu>
-                        </Dropdown>
-
-                    </Menu.Item>
-                </Menu>
+                <p style={{marginLeft: "75px"}}>Ticket Management</p>
             </div>
 
             <Modal open={showProfile} onClose={profile} size={"mini"}>
@@ -145,7 +112,7 @@ const DashboardLayout = ({ children }) => {
 
 
             {/* Main Content */}
-            <div style={{marginLeft: '90px', width: '100%', padding: '20px'}}>
+            <div style={{ width: '100%'}}>
                 {children}
             </div>
         </div>

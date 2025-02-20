@@ -47,7 +47,7 @@ const AddTicketModal = ({ showForm, toggleForm, newTicket, handleInputChange, ha
 
     return (
         <Modal open={showForm} onClose={toggleForm} size="small">
-            <Modal.Header style={{ backgroundColor: "#176D7F", color: "white" }}>
+            <Modal.Header>
                 ADD TICKET
             </Modal.Header>
             <Modal.Content scrolling>
@@ -167,7 +167,7 @@ const AddTicketModal = ({ showForm, toggleForm, newTicket, handleInputChange, ha
             </Modal.Content>
             <Modal.Actions>
                 <Button basic onClick={toggleForm}>CANCEL</Button>
-                <Button onClick={handleSubmit}>REPORT</Button>
+                <Button primary onClick={handleSubmit}>REPORT</Button>
             </Modal.Actions>
         </Modal>
     );

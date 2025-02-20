@@ -61,7 +61,7 @@ const TicketMenu = ({
         <div padded className="ticket-menu-container">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                    <Menu secondary>
+                    <Menu secondary pointing>
                         {menuItems.map(({ name, label, count }) => (
                             <Menu.Item
                                 key={name}

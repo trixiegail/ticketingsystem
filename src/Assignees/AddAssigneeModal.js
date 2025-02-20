@@ -15,6 +15,7 @@ const AddAssigneeModal = ({ showForm, toggleForm, formData, handleChange, handle
                             <Grid.Row>
                                 <Grid.Column>
                                     <Form.Input
+                                        required
                                         label="Full Name"
                                         placeholder="Full Name"
                                         name="name"

@@ -65,24 +65,24 @@ const companyList=[
 ]
 
 const tickets = [
-    { id: 123456, name: "Trixie Hale", email: "trixie@email.com", address:"Talisay,Cebu", date: "Jan 24, 2025", category: "Software Issue", description: "Matthew has software issues. Matthew has software issues. Matthew has software issues.", status: "pending", statusColor: "red", company: "Company 1", priority: "high", lastUpdated: "Jan 24, 2025",
+    { id: 123456, name: "Trixie Hale", email: "trixie@email.com", address:"Talisay,Cebu", date: "Jan 24, 2025", category: "Software Issue", description: "Matthew has software issues.", status: "pending", statusColor: "red", company: "Company 1", priority: "high", lastUpdated: "Jan 24, 2025",
         history: [
             { previousStatus: "new", newStatus: "pending", timestamp: "Jan 24, 2025, 10:00 AM" },
-        ], project: "Support",},
+        ], project: "Support", assignee: "Mark Keifer Watson"},
     { id: 123457, name: "Patrick Ace", email: "patrick@email.com", address:"Cebu City,Cebu", date: "Jan 25, 2025", category: "Hardware Issue", description: "John has trouble with his laptop screen.", status: "ongoing", statusColor: "green", company: "Company 3", priority: "low", lastUpdated: "Feb 2, 2025",
         history: [
             { previousStatus: "new", newStatus: "pending", timestamp: "Jan 24, 2025, 10:00 AM" },
-        ], project: "Support",},
-    { id: 123458, name: "Spongebob Borite", email: "spongebob@email.com", address:"Mandaue,Cebu", date: "March 26, 2025", category: "Network Issue", description: "Sarah's internet connection is unstable.", status: "completed", statusColor: "yellow", company: "Company 1", priority: "medium", lastUpdated: "June 2, 2025",
-        history: [], project: "Support"},
-    { id: 123459, name: "Sunjae Ryu", email: "sunjae@email.com", address:"Mandaue,Cebu", date: "Jan 27, 2025", category: "Account Issue", description: "Mike cannot access his account.", status: "ongoing", statusColor: "red", company: "Company 2", priority: "high", lastUpdated: "July 19, 2025",
-        history: [], project: "Billing"},
-    { id: 123460, name: "Im Sol", email: "spongebob@email.com", address:"Talisay,Cebu", date: "Apr 26, 2025", category: "Network Issue", description: "Sarah's internet connection is unstable.", status: "completed", statusColor: "green", company: "Company 1", priority: "low", lastUpdated: "August 12, 2025",
-        history: [], project: "Billing"},
-    { id: 123461, name: "Kim Taesung", email: "kimtaesung@email.com", address:"Cebu City,Cebu", date: "Jan 27, 2025", category: "Account Issue", description: "Mike cannot access his account.", status: "ongoing", statusColor: "red", company: "Company 2", priority: "high", lastUpdated: "October 23, 2025",
-        history: [], project: "Billing"},
-    { id: 123462, name: "Jeon Jungkook", email: "jungkook@email.com", address:"Cebu City,Cebu", date: "Jan 27, 2025", category: "Account Issue", description: "Mike cannot access his account.", status: "new", statusColor: "red", company: "Company 2", priority: "high", lastUpdated: "October 23, 2025",
-        history: [], project: "Unassigned"},
+        ], project: "Support", assignee: "Yuri Hwang"},
+    { id: 123458, name: "Spongebob Borite", email: "spongebob@email.com", address:"Mandaue,Cebu", date: "March 26, 2024", category: "Network Issue", description: "Sarah's internet connection is unstable.", status: "completed", statusColor: "yellow", company: "Company 1", priority: "medium", lastUpdated: "June 2, 2023",
+        history: [], project: "Support", assignee: "Ella Tuhong"},
+    { id: 123459, name: "Sunjae Ryu", email: "sunjae@email.com", address:"Mandaue,Cebu", date: "Jan 27, 2024", category: "Account Issue", description: "Mike cannot access his account.", status: "ongoing", statusColor: "red", company: "Company 2", priority: "high", lastUpdated: "July 19, 2024",
+        history: [], project: "Billing", assignee: "Elijah Almaden"},
+    { id: 123460, name: "Im Sol", email: "spongebob@email.com", address:"Talisay,Cebu", date: "Apr 26, 2024", category: "Network Issue", description: "Sarah's internet connection is unstable.", status: "completed", statusColor: "green", company: "Company 1", priority: "low", lastUpdated: "August 12, 2024",
+        history: [], project: "Billing", assignee: "Bob Stewarts"},
+    { id: 123461, name: "Kim Taesung", email: "kimtaesung@email.com", address:"Cebu City,Cebu", date: "Jan 27, 2024", category: "Account Issue", description: "Mike cannot access his account.", status: "ongoing", statusColor: "red", company: "Company 2", priority: "high", lastUpdated: "October 23, 2024",
+        history: [], project: "Billing", assignee: "Jurisdicio Macalos"},
+    { id: 123462, name: "Jeon Jungkook", email: "jungkook@email.com", address:"Cebu City,Cebu", date: "Jan 27, 2024", category: "Account Issue", description: "Mike cannot access his account.", status: "new", statusColor: "red", company: "Company 2", priority: "high", lastUpdated: "February 17, 2024",
+        history: [], project: "Support", assignee: "Jackielou Quilantang"},
 ];
 
 const Ticket = () => {
@@ -350,10 +350,10 @@ const Ticket = () => {
         <DashboardLayout>
             <div className="page-container">
                 <div className="content-wrapper">
-                        <div style={{marginBottom: "10px", marginTop: "20px"}}>
+                        <div>
                             <Input icon="search" placeholder="Search..." value={searchQuery}
-                                   onChange={(e) => setSearchQuery(e.target.value)} style={{width: "650px"}}/>
-                            <div style={{display: "flex", alignItems: "center", gap: "10px", float: "right"}}>
+                                   onChange={(e) => setSearchQuery(e.target.value)} style={{width: "200px", marginRight: "10px"}}/>
+
                                 <Dropdown
                                     clearable
                                     placeholder="Select Priority"
@@ -362,13 +362,13 @@ const Ticket = () => {
                                     options={options}
                                     onChange={(e, {value}) => setSelectedPriority(value)}
                                     value={selectedPriority}
+                                    style={{marginRight: "10px", width: "250px"}}
                                 />
 
-                                <Button color="black" floated="right" onClick={toggleForm}
-                                        style={{backgroundColor: "#176D7F"}}>
+                                <Button primary color="black" onClick={toggleForm}>
                                     <Icon name="edit"/> Add Ticket
                                 </Button>
-                            </div>
+
                         </div>
 
                         <div style={{display: "flex", justifyContent: "flex-end", gap: "10px", alignItems: "center", marginRight: "20px"}}>
@@ -400,8 +400,8 @@ const Ticket = () => {
 
 
                     </div>
-                    <div className="table-container-ticket">
-                        <Table celled selectable>
+                    <div className="striped-table">
+                        <Table celled selectable sortable>
                             <Table.Header className="fixed-header">
                                 <Table.Row>
                                     <Table.HeaderCell width={2}>Ticket ID</Table.HeaderCell>
@@ -411,8 +411,8 @@ const Ticket = () => {
                                     <Table.HeaderCell width={2}>Category</Table.HeaderCell>
                                     <Table.HeaderCell width={3}>Description</Table.HeaderCell>
                                     <Table.HeaderCell>Status</Table.HeaderCell>
-                                    <Table.HeaderCell width={2}>Last Updated</Table.HeaderCell>
-                                    <Table.HeaderCell width={2}>History</Table.HeaderCell>
+                                    <Table.HeaderCell width={2}>Last Updated by</Table.HeaderCell>
+                                    <Table.HeaderCell width={2}>Actions</Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>
                             <Table.Body>
@@ -461,9 +461,17 @@ const Ticket = () => {
                                                 selection
                                             />
                                         </Table.Cell>
-                                        <TableCell>{ticket.lastUpdated}</TableCell>
-                                        <TableCell><Button onClick={() => setSelectedTicket(ticket)}>View
-                                            History</Button></TableCell>
+                                        <TableCell>
+                                            <div>
+                                            {ticket.lastUpdated}
+                                            </div>
+                                            <div>
+                                                <Icon name="user"/> {ticket.assignee}
+                                            </div>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Icon name="history" onClick={() => setSelectedTicket(ticket)}/>
+                                        </TableCell>
                                     </Table.Row>
                                 ))}
                             </Table.Body>
