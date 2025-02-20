@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../Dashboard/DashboardLayout";
 import "../css/styles.css";
 import {
@@ -12,6 +13,7 @@ import {
 } from "semantic-ui-react";
 import EditCompanyModal from "./EditCompanyModal";
 import AddCompanyModal from "./AddCompanyModal";
+import TicketHistoryModal from "./TicketHistoryModal";
 
 const initialCompanies = [
     {
@@ -69,6 +71,7 @@ const accountInfoOptions=[
 const generateRandomId = () => Math.floor(100000 + Math.random() * 900000);
 
 const Company = () => {
+    const navigate = useNavigate();
     const [companies, setCompanies] = useState(initialCompanies);
     const [showForm, setShowForm] = useState(false);
     const [editingCompany, setEditingCompany] = useState(null);
@@ -132,6 +135,10 @@ const Company = () => {
         company.companyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         company.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
+    const openCompanyTicketHistory = (id) => {
+        navigate(`/ticket-history/${id}`);
+    };
 
     return (
         <DashboardLayout>
@@ -235,7 +242,7 @@ const Company = () => {
                                             <Table.Cell onClick={() => openTicketHistory(company.companyName)}>
                                                 <div>{company.companyName}</div>
                                             </Table.Cell>
-                                            <Table.Cell onClick={() => openTicketHistory(company.companyName)}>
+                                            <Table.Cell onClick={() => openCompanyTicketHistory(company.id)}>
                                                 <div>{company.name}</div>
                                                 <div style={{color: "gray", fontSize: "0.9em"}}>
                                                     <Icon name="map marker alternate" style={{marginLeft: "10px"}}/> Cebu
@@ -263,34 +270,41 @@ const Company = () => {
                     </Segment>
 
                     {/* Ticket History Modal*/}
-                    <Modal open={showTicketHistory} onClose={() => setShowTicketHistory(false)}>
-                        <Modal.Header>Ticket History for {selectedCompany}</Modal.Header>
-                        <Modal.Content>
-                            <Table celled>
-                                <Table.Header>
-                                    <Table.Row>
-                                        <Table.HeaderCell>Date</Table.HeaderCell>
-                                        <Table.HeaderCell>Category</Table.HeaderCell>
-                                        <Table.HeaderCell>Description</Table.HeaderCell>
-                                        <Table.HeaderCell>Status</Table.HeaderCell>
-                                    </Table.Row>
-                                </Table.Header>
-                                <Table.Body>
-                                    {initialCompanies.filter(ticket => ticket.companyName === selectedCompany).map(ticket => (
-                                        <Table.Row key={ticket.id}>
-                                            <Table.Cell>{ticket.date}</Table.Cell>
-                                            <Table.Cell>{ticket.category}</Table.Cell>
-                                            <Table.Cell>{ticket.description}</Table.Cell>
-                                            <Table.Cell>{ticket.status}</Table.Cell>
-                                        </Table.Row>
-                                    ))}
-                                </Table.Body>
-                            </Table>
-                        </Modal.Content>
-                        <Modal.Actions>
-                            <Button onClick={() => setShowTicketHistory(false)}>Close</Button>
-                        </Modal.Actions>
-                    </Modal>
+                    {/*<Modal open={showTicketHistory} onClose={() => setShowTicketHistory(false)}>*/}
+                    {/*    <Modal.Header>Ticket History for {selectedCompany}</Modal.Header>*/}
+                    {/*    <Modal.Content>*/}
+                    {/*        <Table celled>*/}
+                    {/*            <Table.Header>*/}
+                    {/*                <Table.Row>*/}
+                    {/*                    <Table.HeaderCell>Date</Table.HeaderCell>*/}
+                    {/*                    <Table.HeaderCell>Category</Table.HeaderCell>*/}
+                    {/*                    <Table.HeaderCell>Description</Table.HeaderCell>*/}
+                    {/*                    <Table.HeaderCell>Status</Table.HeaderCell>*/}
+                    {/*                </Table.Row>*/}
+                    {/*            </Table.Header>*/}
+                    {/*            <Table.Body>*/}
+                    {/*                {initialCompanies.filter(ticket => ticket.companyName === selectedCompany).map(ticket => (*/}
+                    {/*                    <Table.Row key={ticket.id}>*/}
+                    {/*                        <Table.Cell>{ticket.date}</Table.Cell>*/}
+                    {/*                        <Table.Cell>{ticket.category}</Table.Cell>*/}
+                    {/*                        <Table.Cell>{ticket.description}</Table.Cell>*/}
+                    {/*                        <Table.Cell>{ticket.status}</Table.Cell>*/}
+                    {/*                    </Table.Row>*/}
+                    {/*                ))}*/}
+                    {/*            </Table.Body>*/}
+                    {/*        </Table>*/}
+                    {/*    </Modal.Content>*/}
+                    {/*    <Modal.Actions>*/}
+                    {/*        <Button onClick={() => setShowTicketHistory(false)}>Close</Button>*/}
+                    {/*    </Modal.Actions>*/}
+                    {/*</Modal>*/}
+
+                    <TicketHistoryModal
+                        showTicketHistory={showTicketHistory}
+                        setShowTicketHistory={setShowTicketHistory}
+                        selectedCompany={selectedCompany}
+                        initialCompanies={initialCompanies}
+                    />
                 </div>
             </div>
         </DashboardLayout>

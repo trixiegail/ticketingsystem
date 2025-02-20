@@ -37,7 +37,7 @@ const TicketContent = () => {
     const handleProjectChange = (e, { value }) => {
         setProject(value);
         setStatus(value === 'Billing' ? 'Started' : 'In Progress');
-    };
+    }; //
 
     const filteredAssignees = assignees.filter(a =>
         project === 'Billing' ? a.department === 'Sales' : a.department === 'IT'
@@ -116,7 +116,7 @@ const TicketContent = () => {
                             <TableCell><strong>Ticket Details:</strong></TableCell>
                             <TableCell>{ticket.description}</TableCell>
                             <TableCell><strong>Nature of Accident:</strong></TableCell>
-                            <TableCell>Dinanghag</TableCell>
+                            <TableCell>Accident 1</TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell><strong>Severity:</strong></TableCell>
